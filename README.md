@@ -5,10 +5,7 @@ Ghost game for Android
 
 ## Screenshots:
 
-![screenshot 1][readme_img/screenshot1.png]
-
-![screenshot 2][readme_img/screenshot2.png]
-
-![screenshot 3][readme_img/screenshot3.png]
-
-![screenshot 4][readme_img/screenshot4.png]
+![screenshot 1](readme_img/screenshot1.png)
+![screenshot 2](readme_img/screenshot2.png)
+![screenshot 3](readme_img/screenshot3.png)
+![screenshot 4](readme_img/screenshot4.png)
