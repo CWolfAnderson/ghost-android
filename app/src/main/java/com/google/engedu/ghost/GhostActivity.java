@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Button;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -113,10 +114,12 @@ public class GhostActivity extends ActionBarActivity {
         } else {
 
             if (wordFragment.length() >= 4 && simpleDictionary.isWord(wordFragment)) {
-                Log.d("test", "Word is >= 4 && is a word!");
+                // Log.d("test", "Word is >= 4 && is a word!");
                 updateStatus(wordFragment + " is a word, the computer wins!");
+                disableChallengeButton();
             } else if (!simpleDictionary.isWord(simpleDictionary.getAnyWordStartingWith(wordFragment))) {
                 updateStatus(wordFragment + " cannot form a word, the computer wins!");
+                disableChallengeButton();
             } else {
 
                 Log.d("test", "wordFragment in computerTurn: " + wordFragment);
@@ -126,6 +129,7 @@ public class GhostActivity extends ActionBarActivity {
                     updateGhostView();
                 } else {
                     updateStatus("There aren't any words starting with " + wordFragment + ", the computer wins!");
+                    disableChallengeButton();
                 }
 
                 TextView label = (TextView) findViewById(R.id.gameStatus);
@@ -192,7 +196,7 @@ public class GhostActivity extends ActionBarActivity {
         updateGhostView();
 
         userTurn = random.nextBoolean();
-        Log.d("test", "userTurn: " + userTurn);
+        // Log.d("test", "userTurn: " + userTurn);
 
         if (userTurn) {
             updateStatus(USER_TURN);
@@ -200,6 +204,9 @@ public class GhostActivity extends ActionBarActivity {
             updateStatus(COMPUTER_TURN);
             computerTurn();
         }
+
+        Button challengeBtn = (Button) findViewById(R.id.challenge_btn);
+        challengeBtn.setEnabled(true);
 
     }
 
@@ -211,19 +218,28 @@ public class GhostActivity extends ActionBarActivity {
     */
     public void challenge(View view) {
 
-        if (wordFragment.length() >= 4 && simpleDictionary.isWord(wordFragment)) {
-            Log.d("test", "Word is >= 4 && is a word!");
+        if (wordFragment.length() < 4) {
+            updateStatus("There must be at least 4 characters to challenge.");
+        } else if (wordFragment.length() >= 4 && simpleDictionary.isWord(wordFragment)) {
+            // Log.d("test", "Word is >= 4 && is a word!");
             updateStatus(wordFragment + " is a word, you win!");
+            disableChallengeButton();
         } else {
             String tempWord = simpleDictionary.getAnyWordStartingWith(wordFragment);
-            Log.d("test", "word plus 1: " + tempWord);
+            // Log.d("test", "word plus 1: " + tempWord);
             if (tempWord.length() > wordFragment.length()) {
                 updateStatus(tempWord + " can be created from " + wordFragment + ", you lose!");
             } else {
                 updateStatus(wordFragment + " cannot be extended, you win!");
             }
+            disableChallengeButton();
         }
 
+    }
+
+    public void disableChallengeButton() {
+        Button challengeBtn = (Button) findViewById(R.id.challenge_btn);
+        challengeBtn.setEnabled(false);
     }
 
     public void updateStatus(String status) {
