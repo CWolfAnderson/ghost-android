@@ -17,7 +17,6 @@ import java.util.Random;
 
 import com.google.common.base.Strings;
 
-
 public class GhostActivity extends ActionBarActivity {
     private static final String COMPUTER_TURN = "Computer's turn";
     private static final String USER_TURN = "Your turn";
@@ -27,9 +26,16 @@ public class GhostActivity extends ActionBarActivity {
     private SimpleDictionary simpleDictionary;
     private String wordFragment = "";
 
+    // State saves
+    static final String STATE_COMPUTER_TURN = "";
+    static final String STATE_USER_TURN = "";
+    // static final SimpleDictionary STATE_SIMPLE_DICTIONARY = simpleDictionary;
+    static final String STATE_USERTURN = "";
+    static final String STATE_WORD_FRAGMENT = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ghost);
         onStart(null);
@@ -49,6 +55,21 @@ public class GhostActivity extends ActionBarActivity {
             toast.show();
         }
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        // http://developer.android.com/training/basics/activity-lifecycle/recreating.html
+
+        // Save the user's current game state
+        savedInstanceState.putString(STATE_COMPUTER_TURN, COMPUTER_TURN);
+        savedInstanceState.putString(STATE_USER_TURN, USER_TURN);
+        savedInstanceState.putBoolean(STATE_USERTURN, userTurn);
+        savedInstanceState.putString(STATE_WORD_FRAGMENT, wordFragment);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
