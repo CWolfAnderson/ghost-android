@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/christoph/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/15.0/ed727a8d9f247e2050281cb083f1c77b09dcb5cd/guava-15.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ed727a8d9f247e2050281cb083f1c77b09dcb5cd">
+        <dex dex="/Users/christoph/Google Drive/Higher Learning/Android/Android Workspace/Ghost/app/build/intermediates/pre-dexed/debug/guava-15.0-b332fcdf35d5dd8f73da1d30932881b24b9ae7bc.jar" />
+    </item>
+
+</items>
